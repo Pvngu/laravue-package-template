@@ -1,0 +1,47 @@
+{
+  "name": "@pvngu/vue-calendar",
+  "version": "0.1.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/vue-calendar.umd.js",
+  "module": "./dist/vue-calendar.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-calendar.es.js",
+      "require": "./dist/vue-calendar.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "ant-design-vue": "^4.2.6",
+    "dayjs": "^1.11.18",
+    "moment": "^2.30.1",
+    "vue": "^3.5.32",
+    "vue-i18n": "^11.1.12",
+    "vuedraggable": "^4.1.0"
+  },
+  "devDependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "@tailwindcss/vite": "^4.2.2",
+    "@vitejs/plugin-vue": "^6.0.5",
+    "ant-design-vue": "^4.2.6",
+    "dayjs": "^1.11.18",
+    "moment": "^2.30.1",
+    "tailwindcss": "^4.2.2",
+    "vite": "^8.0.4",
+    "vite-plugin-css-injected-by-js": "^4.0.1",
+    "vue": "^3.5.32",
+    "vue-i18n": "^11.1.12",
+    "vuedraggable": "^4.1.0"
+  },
+  "dependencies": {
+    "pinia": "^3.0.4"
+  }
+}
