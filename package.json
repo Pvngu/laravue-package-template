@@ -1,16 +1,16 @@
 {
-  "name": "@pvngu/vue-calendar",
+  "name": "@pvngu/laravue-package-template",
   "version": "0.1.0",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/vue-calendar.umd.js",
-  "module": "./dist/vue-calendar.es.js",
+  "main": "./dist/laravue-package-template.umd.js",
+  "module": "./dist/laravue-package-template.es.js",
   "exports": {
     ".": {
-      "import": "./dist/vue-calendar.es.js",
-      "require": "./dist/vue-calendar.umd.js"
+      "import": "./dist/laravue-package-template.es.js",
+      "require": "./dist/laravue-package-template.umd.js"
     }
   },
   "scripts": {

@@ -13,21 +13,21 @@ const __dirname = dirname(__filename)
 export default defineConfig({
   plugins: [vue(), tailwindcss(), cssInjectedByJsPlugin()],
   build: {
-      lib: {
-        entry: resolve(__dirname, 'src/index.js'),
-        name: 'CustomVueCalendar',
-        fileName: (format) => `vue-calendar.${format}.js`
-      },
-      rollupOptions: {
-        // Externalize BOTH vue and ant-design-vue
-        external: ['vue', 'ant-design-vue'],
-        output: {
-          exports: 'named',
-          globals: {
-            vue: 'Vue',
-            'ant-design-vue': 'antd'
-          }
+    lib: {
+      entry: resolve(__dirname, 'src/index.js'),
+      name: 'CustomVueCalendar',
+      fileName: (format) => `laravue-package-template.${format}.js`
+    },
+    rollupOptions: {
+      // Externalize BOTH vue and ant-design-vue
+      external: ['vue', 'ant-design-vue'],
+      output: {
+        exports: 'named',
+        globals: {
+          vue: 'Vue',
+          'ant-design-vue': 'antd'
         }
       }
     }
+  }
 })
