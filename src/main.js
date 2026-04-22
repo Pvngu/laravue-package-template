@@ -3,7 +3,7 @@ import './style.css'
 import App from './App.vue'
 import en from './locales/en.json'
 
-const dictionaries = { en, es }
+const dictionaries = { en }
 
 const resolveLocale = () => {
 	if (typeof document !== 'undefined' && document.documentElement?.lang) {
