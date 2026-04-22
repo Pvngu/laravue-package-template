@@ -1,3 +1,9 @@
 @import "tailwindcss";
 
-svg { vertical-align: baseline; }
+* {
+    box-sizing: border-box;
+}
+
+svg {
+    vertical-align: baseline;
+}

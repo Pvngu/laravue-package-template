@@ -1,0 +1,5 @@
+@layer theme, components, utilities;
+
+/* Import Theme and Utilities, but completely OMIT Preflight to protect the host app */
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
