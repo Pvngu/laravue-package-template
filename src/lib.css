@@ -1,5 +1,6 @@
 @layer theme, components, utilities;
 
 /* Import Theme and Utilities, but completely OMIT Preflight to protect the host app */
+/* Use prefix after applying all tw classes: prefix(pck) */
 @import "tailwindcss/theme" layer(theme);
 @import "tailwindcss/utilities" layer(utilities);
