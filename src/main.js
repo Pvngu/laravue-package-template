@@ -3,10 +3,9 @@ import 'ant-design-vue/dist/reset.css'
 import './style.css'
 import App from './App.vue'
 import en from './locales/en.json'
-import es from './locales/es.json'
 import { InstantSearchI18n } from './plugin'
 
-const dictionaries = { en, es }
+const dictionaries = { en }
 
 const resolveLocale = () => {
 	if (typeof document !== 'undefined' && document.documentElement?.lang) {
