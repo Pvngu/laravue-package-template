@@ -5,8 +5,8 @@ export {
 } from './components/PackageComponent.vue'
 
 export {
-    default as InstantSearchI18n,
-    InstantSearchI18n as plugin
+    default as VueProjectI18n,
+    VueProjectI18n as plugin
 } from './plugin'
 
 export * from './utils/i18n'

@@ -1,9 +1,8 @@
 import { createApp } from 'vue'
-import 'ant-design-vue/dist/reset.css'
 import './style.css'
 import App from './App.vue'
 import en from './locales/en.json'
-import { InstantSearchI18n } from './plugin'
+import { VueProjectI18n } from './plugin'
 
 const dictionaries = { en }
 
@@ -53,7 +52,7 @@ const dictionary = dictionaries[locale] || en
 const app = createApp(App)
 
 // Use the new plugin architecture
-app.use(InstantSearchI18n, {
+app.use(VueProjectI18n, {
 	translate: (key, fallbackOrParams, maybeParams) => {
 		const hasFallback = typeof fallbackOrParams === 'string'
 		const fallback = hasFallback ? fallbackOrParams : key

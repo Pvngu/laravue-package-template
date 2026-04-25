@@ -1,12 +1,12 @@
 import type { App, Plugin } from 'vue'
 import { I18N_SYMBOL, type TranslateFunction } from './utils/i18n'
 
-export interface InstantSearchOptions {
+export interface VueProjectOptions {
   translate?: TranslateFunction
 }
 
-export const InstantSearchI18n: Plugin = {
-  install(app: App, options: InstantSearchOptions = {}) {
+export const VueProjectI18n: Plugin = {
+  install(app: App, options: VueProjectOptions = {}) {
     const translate = options.translate
 
     if (translate) {
@@ -16,4 +16,4 @@ export const InstantSearchI18n: Plugin = {
   }
 }
 
-export default InstantSearchI18n
+export default VueProjectI18n
