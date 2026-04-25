@@ -1,7 +1,7 @@
 import { inject } from 'vue'
 import en from '../locales/en.json'
 
-export const I18N_SYMBOL = Symbol('vis-i18n')
+export const I18N_SYMBOL = Symbol('i18n')
 
 export type TranslateFunction = (key: string, params?: Record<string, any>, fallback?: string) => string
 
