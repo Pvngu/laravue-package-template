@@ -1,5 +1,5 @@
 <script setup>
-import { useTranslation } from './utils/i18n';
+import { useTranslation } from '@utils/i18n';
 const { t } = useTranslation();
 </script>
 

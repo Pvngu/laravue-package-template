@@ -12,6 +12,14 @@ const __dirname = dirname(__filename)
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), tailwindcss(), cssInjectedByJsPlugin()],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+      '@components': resolve(__dirname, 'src/components'),
+      '@utils': resolve(__dirname, 'src/utils'),
+      '@assets': resolve(__dirname, 'src/assets'),
+    }
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.js'),
