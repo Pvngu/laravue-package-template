@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import path from 'node:path'
 
 // Safely recreate __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url)
@@ -14,10 +15,10 @@ export default defineConfig({
   plugins: [vue(), tailwindcss(), cssInjectedByJsPlugin()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-      '@components': resolve(__dirname, 'src/components'),
-      '@utils': resolve(__dirname, 'src/utils'),
-      '@assets': resolve(__dirname, 'src/assets'),
+      '@': path.resolve(__dirname, './src'),
+      // '@components': path.resolve(__dirname, 'src/components'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
     }
   },
   build: {
