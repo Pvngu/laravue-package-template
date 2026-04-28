@@ -16,6 +16,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "type-check": "vue-tsc --noEmit",
     "preview": "vite preview"
   },
   "peerDependencies": {
@@ -29,6 +30,10 @@
     "tailwindcss": "^4.2.2",
     "vite": "^8.0.4",
     "vite-plugin-css-injected-by-js": "^4.0.1",
-    "vue": "^3.5.32"
+    "vue": "^3.5.32",
+    "@types/node": "^24.12.2",
+    "@vue/tsconfig": "^0.9.1",
+    "typescript": "~6.0.2",
+    "vue-tsc": "^3.2.7"
   }
 }

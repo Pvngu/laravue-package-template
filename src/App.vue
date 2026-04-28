@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useTranslation } from '@utils/i18n';
 const { t } = useTranslation();
 </script>

@@ -22,7 +22,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.js'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'CustomVueCalendar',
       fileName: (format) => `laravue-package-template.${format}.js`
     },
