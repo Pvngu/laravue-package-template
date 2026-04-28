@@ -14,7 +14,7 @@ setLocale('en')
 // In-App example
 
 <!-- <script setup>
-import { useTranslation } from '@utils/i18n';
+import { useTranslation } from '@/utils/i18n';
 const { t, locale, setLocale } = useTranslation();
 </script>
 

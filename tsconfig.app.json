@@ -18,10 +18,10 @@
       // "@components/*": [
       //   "src/components/*"
       // ],
-      // "@utils/*": [
+      // "@/utils/*": [
       //   "src/utils/*"
       // ],
-      // "@assets/*": [
+      // "@/assets/*": [
       //   "src/assets/*"
       // ]
     },
