@@ -1,3 +1,8 @@
 {
-  "test_translation": "Esta es una traducción de prueba"
+  "hello": {
+    "greeting": "¡Hola, {name}!",
+    "anonymous": "¡Hola!",
+    "wave": "Saludar",
+    "waved": "Saludaste {count} veces"
+  }
 }

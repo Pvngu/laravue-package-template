@@ -1,0 +1,257 @@
+/*
+ * The package's stylesheet, injected into the app's page with the JavaScript (vite-plugin-css-injected-by-js).
+ *
+ * Isolation from the app:
+ *  - Every utility is prefixed (`ml:flex`, `ml:hover:bg-accent`), so the app's own Tailwind classes and the package's
+ *    never match each other's elements. Tailwind's theme variables are prefixed too (`--ml-spacing`, `--ml-color-*`).
+ *  - Design tokens are namespaced (`--ml-primary`, ...), at zero specificity in the `base` layer: an app's own values
+ *    on :root (or .dark) win, unlayered or in its `@layer base`, whichever stylesheet loads first.
+ *  - Utilities are unlayered, so the app's unlayered CSS (element resets, component styles) doesn't beat them.
+ *  - No global preflight: the reset below only targets the package's elements (classes starting with `ml:`), and
+ *    sits in the `base` layer, so the app's own classes on a component or its slot content still apply.
+ *
+ * To change the prefix by hand: prefix(...) below, every `ml:` class and `--ml-` token, the reset selectors,
+ * components.json (tailwind.prefix) and src/lib/utils.ts (extendTailwindMerge).
+ */
+@layer theme, base;
+@import 'tailwindcss/theme' layer(theme) prefix(ml);
+@import 'tw-animate-css/prefix';
+
+/* Dark mode follows a `.dark` class on an ancestor (or the element itself), like shadcn-vue apps */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--ml-background);
+  --color-foreground: var(--ml-foreground);
+  --color-card: var(--ml-card);
+  --color-card-foreground: var(--ml-card-foreground);
+  --color-popover: var(--ml-popover);
+  --color-popover-foreground: var(--ml-popover-foreground);
+  --color-primary: var(--ml-primary);
+  --color-primary-foreground: var(--ml-primary-foreground);
+  --color-secondary: var(--ml-secondary);
+  --color-secondary-foreground: var(--ml-secondary-foreground);
+  --color-muted: var(--ml-muted);
+  --color-muted-foreground: var(--ml-muted-foreground);
+  --color-accent: var(--ml-accent);
+  --color-accent-foreground: var(--ml-accent-foreground);
+  --color-destructive: var(--ml-destructive);
+  --color-border: var(--ml-border);
+  --color-input: var(--ml-input);
+  --color-ring: var(--ml-ring);
+  --color-chart-1: var(--ml-chart-1);
+  --color-chart-2: var(--ml-chart-2);
+  --color-chart-3: var(--ml-chart-3);
+  --color-chart-4: var(--ml-chart-4);
+  --color-chart-5: var(--ml-chart-5);
+  --color-sidebar: var(--ml-sidebar);
+  --color-sidebar-foreground: var(--ml-sidebar-foreground);
+  --color-sidebar-primary: var(--ml-sidebar-primary);
+  --color-sidebar-primary-foreground: var(--ml-sidebar-primary-foreground);
+  --color-sidebar-accent: var(--ml-sidebar-accent);
+  --color-sidebar-accent-foreground: var(--ml-sidebar-accent-foreground);
+  --color-sidebar-border: var(--ml-sidebar-border);
+  --color-sidebar-ring: var(--ml-sidebar-ring);
+  --radius-sm: calc(var(--ml-radius) - 4px);
+  --radius-md: calc(var(--ml-radius) - 2px);
+  --radius-lg: var(--ml-radius);
+  --radius-xl: calc(var(--ml-radius) + 4px);
+}
+
+/*
+ * Zero specificity, in the `base` layer: the app's own :root / .dark values win, whether its CSS is unlayered or in
+ * `@layer base`. An app that overrides a token on :root should override it on .dark too (or it applies in both).
+ */
+@layer base {
+  :where(:root) {
+    --ml-radius: 0.625rem;
+    --ml-background: oklch(1 0 0);
+    --ml-foreground: oklch(0.145 0 0);
+    --ml-card: oklch(1 0 0);
+    --ml-card-foreground: oklch(0.145 0 0);
+    --ml-popover: oklch(1 0 0);
+    --ml-popover-foreground: oklch(0.145 0 0);
+    --ml-primary: oklch(0.205 0 0);
+    --ml-primary-foreground: oklch(0.985 0 0);
+    --ml-secondary: oklch(0.97 0 0);
+    --ml-secondary-foreground: oklch(0.205 0 0);
+    --ml-muted: oklch(0.97 0 0);
+    --ml-muted-foreground: oklch(0.556 0 0);
+    --ml-accent: oklch(0.97 0 0);
+    --ml-accent-foreground: oklch(0.205 0 0);
+    --ml-destructive: oklch(0.577 0.245 27.325);
+    --ml-border: oklch(0.922 0 0);
+    --ml-input: oklch(0.922 0 0);
+    --ml-ring: oklch(0.708 0 0);
+    --ml-chart-1: oklch(0.646 0.222 41.116);
+    --ml-chart-2: oklch(0.6 0.118 184.704);
+    --ml-chart-3: oklch(0.398 0.07 227.392);
+    --ml-chart-4: oklch(0.828 0.189 84.429);
+    --ml-chart-5: oklch(0.769 0.188 70.08);
+    --ml-sidebar: oklch(0.985 0 0);
+    --ml-sidebar-foreground: oklch(0.145 0 0);
+    --ml-sidebar-primary: oklch(0.205 0 0);
+    --ml-sidebar-primary-foreground: oklch(0.985 0 0);
+    --ml-sidebar-accent: oklch(0.97 0 0);
+    --ml-sidebar-accent-foreground: oklch(0.205 0 0);
+    --ml-sidebar-border: oklch(0.922 0 0);
+    --ml-sidebar-ring: oklch(0.708 0 0);
+  }
+
+  :where(.dark) {
+    --ml-background: oklch(0.145 0 0);
+    --ml-foreground: oklch(0.985 0 0);
+    --ml-card: oklch(0.205 0 0);
+    --ml-card-foreground: oklch(0.985 0 0);
+    --ml-popover: oklch(0.205 0 0);
+    --ml-popover-foreground: oklch(0.985 0 0);
+    --ml-primary: oklch(0.922 0 0);
+    --ml-primary-foreground: oklch(0.205 0 0);
+    --ml-secondary: oklch(0.269 0 0);
+    --ml-secondary-foreground: oklch(0.985 0 0);
+    --ml-muted: oklch(0.269 0 0);
+    --ml-muted-foreground: oklch(0.708 0 0);
+    --ml-accent: oklch(0.269 0 0);
+    --ml-accent-foreground: oklch(0.985 0 0);
+    --ml-destructive: oklch(0.704 0.191 22.216);
+    --ml-border: oklch(1 0 0 / 10%);
+    --ml-input: oklch(1 0 0 / 15%);
+    --ml-ring: oklch(0.556 0 0);
+    --ml-chart-1: oklch(0.488 0.243 264.376);
+    --ml-chart-2: oklch(0.696 0.17 162.48);
+    --ml-chart-3: oklch(0.769 0.188 70.08);
+    --ml-chart-4: oklch(0.627 0.265 303.9);
+    --ml-chart-5: oklch(0.645 0.246 16.439);
+    --ml-sidebar: oklch(0.205 0 0);
+    --ml-sidebar-foreground: oklch(0.985 0 0);
+    --ml-sidebar-primary: oklch(0.488 0.243 264.376);
+    --ml-sidebar-primary-foreground: oklch(0.985 0 0);
+    --ml-sidebar-accent: oklch(0.269 0 0);
+    --ml-sidebar-accent-foreground: oklch(0.985 0 0);
+    --ml-sidebar-border: oklch(1 0 0 / 10%);
+    --ml-sidebar-ring: oklch(0.556 0 0);
+  }
+}
+
+/*
+ * Scoped reset: the parts of Tailwind's preflight that components rely on, applied only to the package's elements
+ * (an element with a class starting with `ml:`, and its descendants; this also covers teleported dialogs and menus).
+ * Zero specificity and in the `base` layer, so the package's utilities and the app's own classes (on a component root
+ * or in slot content) still win.
+ */
+@layer base {
+  :where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *),
+  :where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *)::before,
+  :where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *)::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid var(--ml-border);
+    outline-color: color-mix(in oklab, var(--ml-ring) 50%, transparent);
+  }
+
+  :where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *):where(button, input, select, textarea) {
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    background-color: transparent;
+    border-radius: 0;
+    opacity: 1;
+  }
+
+  :where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *):where(textarea) {
+    resize: vertical;
+  }
+
+  :where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *)::placeholder {
+    opacity: 1;
+    color: color-mix(in oklab, currentcolor 50%, transparent);
+  }
+
+  :where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *):where(h1, h2, h3, h4, h5, h6) {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  :where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *):where(a) {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  :where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *):where(ol, ul, menu) {
+    list-style: none;
+  }
+
+  :where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *):where(
+    img,
+    svg,
+    video,
+    canvas,
+    audio,
+    iframe,
+    embed,
+    object
+  ) {
+    display: block;
+    vertical-align: middle;
+  }
+
+  :where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *):where(img, video) {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/*
+ * The border colour again, unlayered: apps that reset borders globally outside a layer (`* { border: 0 }`, common next
+ * to Ant Design) would otherwise turn every border of the package to the text colour. Zero specificity, so the
+ * package's own border-colour utilities still win; an app's Tailwind border-colour classes on the package's elements
+ * don't (they're layered).
+ */
+:where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *),
+:where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *)::before,
+:where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *)::after {
+  border-color: var(--ml-border);
+}
+
+/*
+ * Apps' own element resets (e.g. Ant Design's reset.css: `p { margin-bottom: 1em }`, `h1 { font-weight: 500 }`) are
+ * usually unlayered, so they beat the layered reset above. The elements they style get the same reset again, unlayered
+ * and with a class's specificity (0,1,0): enough to beat element selectors, and still before the utilities, so every
+ * `ml:` class wins. The trade-offs: an app's Tailwind margin/padding classes on these elements inside the package
+ * (e.g. a <p class="mt-4"> in slot content) lose too, and `ml:space-x/y-*` doesn't space them (zero specificity).
+ */
+:is([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *):where(
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ul,
+  ol,
+  dl,
+  dd,
+  blockquote,
+  pre,
+  figure,
+  hr,
+  mark
+) {
+  margin: 0;
+  padding: 0;
+}
+
+:is([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *):where(h1, h2, h3, h4, h5, h6) {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* The browser's own highlight, which the zero-specificity reset leaves alone */
+:is([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *):where(mark) {
+  background-color: revert;
+}
+
+/* Only the package's own source contributes classes: not the playground, docs or tests */
+@tailwind utilities source('..');

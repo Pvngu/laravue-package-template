@@ -1,0 +1,44 @@
+/*
+ * Dev playground only: not part of the package, which ships src/styles/lib.css.
+ * Imitates a typical app page: a global Tailwind preflight, and the package's theme colours on <body>.
+ */
+@import 'tailwindcss/preflight' layer(base);
+
+body {
+  background-color: var(--ml-background);
+  color: var(--ml-foreground);
+  font-family: system-ui, sans-serif;
+}
+
+/* Plain CSS on purpose: the playground adds no utilities to the package's stylesheet */
+.playground-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--ml-border);
+  font-size: 12px;
+  color: var(--ml-muted-foreground);
+}
+
+.playground-toolbar label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.playground-toolbar select,
+.playground-toolbar input:not([type='checkbox']) {
+  border: 1px solid var(--ml-border);
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.375rem;
+  background: var(--ml-background);
+  color: var(--ml-foreground);
+}
+
+.playground-stage {
+  max-width: 32rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}

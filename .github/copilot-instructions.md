@@ -1,30 +1,4 @@
 # Instructions
 
-## Technology Stack
-- **Framework**: Vue 3 (Composition API with `<script setup>`).
-- **UI Library**: shadcn-vue.
-- **Icons**: Ant Design Icons (`@ant-design/icons-vue`).
-- **Styling**: Tailwind CSS 4 (using `@tailwindcss/vite`).
-- **Internationalization**: Vue I18n 11+.
-- **Build Tool**: Vite 8+ (configured for library mode).
-
-## Project Structure & Goal
-- **Goal**: Build a high-quality Vue component library suitable for npm distribution.
-- **Library Entry**: `src/index.js` is the primary entry point for exporting public components and functions.
-- **Development Entry**: `src/main.js` and `src/App.vue` are used for local testing and demonstrations.
-- **Localization**: Translations should be managed in `src/locales/` using JSON files.
-
-## Coding Style and Component Design
-- **Atomization**: Break down UI into small, focused, and reusable Vue components.
-- **Single Responsibility**: Each component should handle one specific part of the UI or logic.
-- **Modularity**: Avoid monolithic files; prefer a flat or nested structure in `src/components/`.
-- **CSS Management**: Use Tailwind CSS 4 for most styling. Styles are automatically injected into the JS bundle via `vite-plugin-css-injected-by-js`.
-
-## Build & Publishing
-- **External Dependencies**: `vue`, and `vue-i18n` are treated as peer dependencies and externalized in the build.
-- **Output Formats**: The build generates both ES Module (`.es.js`) and UMD (`.umd.js`) bundles in the `dist/` directory.
-
-## Future Considerations
-- **Linting & Formatting**: Implement ESLint and Prettier for code consistency.
-- **Testing**: Integrate Vitest for unit testing components.
-- **Documentation**: Use VitePress or similar for library documentation.
+Follow [AGENTS.md](../AGENTS.md) at the repository root: it is the one set of instructions for this project (stack,
+layout, conventions and quality checks). Keep this file as a pointer rather than copying rules here.

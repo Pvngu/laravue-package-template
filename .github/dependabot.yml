@@ -1,0 +1,34 @@
+version: 2
+updates:
+  # Keeps the SHA-pinned actions in .github/workflows current (pins and their version comments)
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    # Raise a range in package.json only when the new version falls outside it, so the dependency ranges apps see don't
+    # tighten with every release (the lockfile still moves)
+    versioning-strategy: increase-if-necessary
+    # Wait a week before proposing a new release (a supply-chain precaution)
+    cooldown:
+      default-days: 7
+    groups:
+      tailwind:
+        patterns: ['tailwindcss', '@tailwindcss/*']
+      vitest:
+        patterns: ['vitest', '@vitest/*']
+      lint:
+        patterns: ['eslint', '@eslint/*', 'eslint-*', 'typescript-eslint']
+      vue:
+        patterns: ['vue', 'vue-tsc', '@vue/*', '@vitejs/plugin-vue']
+    ignore:
+      # typescript-eslint supports TypeScript below 6.1; raise this once it supports a newer one
+      - dependency-name: typescript
+        update-types: ['version-update:semver-minor', 'version-update:semver-major']
+      # Node's types follow the Node version in .nvmrc and CI, not the latest Node
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']

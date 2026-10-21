@@ -1,14 +1,13 @@
 {
   "$schema": "https://shadcn-vue.com/schema.json",
   "style": "new-york",
-  "font": "inter",
   "typescript": true,
   "tailwind": {
     "config": "",
-    "css": "src/style.css",
+    "css": "src/styles/lib.css",
     "baseColor": "neutral",
     "cssVariables": true,
-    "prefix": ""
+    "prefix": "ml"
   },
   "iconLibrary": "lucide",
   "rtl": false,

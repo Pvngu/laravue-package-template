@@ -1,3 +1,8 @@
 {
-  "test_translation": "This is a test translation"
+  "hello": {
+    "greeting": "Hello, {name}!",
+    "anonymous": "Hello there!",
+    "wave": "Wave",
+    "waved": "Waved {count} times"
+  }
 }

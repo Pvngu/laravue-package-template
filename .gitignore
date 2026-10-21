@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# npm pack output
+*.tgz
+
+# Test coverage reports
+coverage
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +28,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local VS Code multi-root workspaces (machine-specific paths)
+*.code-workspace
