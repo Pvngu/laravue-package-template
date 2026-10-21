@@ -7,7 +7,8 @@
 //              in every other expression, the same as in scripts
 //   scripts    strings inside cn() / cva() / clsx() calls, values of *class* variables and keys,
 //              and any string that already contains a prefixed class
-// A class with the prefix in the wrong place (hover:ml:flex) or another package's prefix (xy:flex) is reported too.
+// A class with the prefix in the wrong place (hover:ml:flex) or another package's prefix (xy:flex) is reported too, and
+// so are space-* and divide-*, whose zero specificity loses to an app's global reset (`* { border: 0 }`).
 import { readFileSync, readdirSync } from 'node:fs'
 import { dirname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -47,6 +48,8 @@ if (!generatesCss(unprefixed, 'flex') || !generatesCss(prefixed, `${PREFIX}flex`
 
 // Prefixed markers that style other elements instead of generating CSS themselves
 const MARKERS = new RegExp(`^${themeImport[1]}:(group|peer)(/[\\w-]+)?$`)
+// Utilities that style the children through :where(), with zero specificity
+const ZERO_SPECIFICITY = new RegExp(`^${themeImport[1]}:([\\w-]+:)*-?(space|divide)-`)
 
 const problems = []
 let checkedStrings = 0
@@ -61,6 +64,7 @@ function checkClassString(value, file, line) {
 
 function checkToken(token) {
   if (token.startsWith(PREFIX)) {
+    if (ZERO_SPECIFICITY.test(token)) return 'zero specificity: put margins or borders on the children instead'
     return MARKERS.test(token) || generatesCss(prefixed, token) ? null : 'unknown class'
   }
   if (generatesCss(unprefixed, token)) return `missing "${PREFIX}" prefix`

@@ -27,8 +27,10 @@ never change an app's own styles, state or dependencies. (It was created from la
 - Prefix every Tailwind class with `ml:` as its first part (`ml:hover:flex`, not `hover:ml:flex`), also inside `cn()`,
   `cva()` and `:class`. Use theme tokens (`ml:bg-background`, `ml:text-muted-foreground`) rather than fixed colours, so
   theming and dark mode work. Tokens are `--ml-*` variables in `src/styles/lib.css`.
-- Space `p`, headings, lists, `blockquote`, `pre`, `figure` and `hr` with margins or padding on the elements themselves,
-  or `ml:flex`/`ml:grid` with `ml:gap-*`: the stylesheet's reset beats `ml:space-x-*`/`ml:space-y-*` on them.
+- Space and separate elements with margins, padding or borders on the elements themselves (`ml:border-b
+  ml:last:border-b-0`), or `ml:flex`/`ml:grid` with `ml:gap-*`. Never `ml:space-*` or `ml:divide-*` (the class check
+  rejects them): they style the children with zero specificity, so an app's global reset (`* { border: 0 }`) and the
+  stylesheet's own reset of `p`, headings and lists beat them.
 - Add shadcn-vue components with `npx shadcn-vue@2.8.2 add <name>` (a fixed version: update it deliberately):
   `components.json` makes them land in `src/components/ui/` with prefixed classes. Leave their formatting as the CLI
   wrote it. Afterwards, check what else it changed: dependencies it added to package.json (runtime libraries belong in

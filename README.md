@@ -91,10 +91,14 @@ it with the package's keys, listed in [src/locales/en.json](src/locales/en.json)
 - Dark mode follows a `dark` class on an ancestor, usually `<html>`, like shadcn-vue apps.
 - Text uses the app's font.
 - Content you pass into the package's slots is inside its elements, so its reset applies there too: paragraphs,
-  headings and lists have no margins, and on those elements the reset beats the app's own Tailwind margin and padding
-  classes (wrap them in a `<div>` with the classes instead). The app's Tailwind border-colour classes don't apply
-  anywhere inside the package: borders use `--ml-border`, so that a global `* { border: 0 }` in the app can't blacken
-  them.
+  headings and lists have no margins, and on those elements the reset beats the app's own Tailwind classes for margins
+  and padding, and for the font size and weight of headings. Put those classes on a `<div>` around them instead (a
+  heading inherits its size and weight), or use inline styles.
+- The package's own borders use `--ml-border` even when a global rule like `* { border: 0 }` loads after the package,
+  so it can't turn them to the text colour. The app's Tailwind border-colour classes on a component of the package
+  don't apply, and a CSS rule of the app's with a single class only applies if it loads after the package: change the
+  token instead, or use a more specific selector. In the slots, the app's border-colour classes apply; elements
+  without one take the border colour of whichever base layer loads last, the package's or the app's.
 - The styles are added to the page in a `<style>` element. With a Content Security Policy, `style-src` must allow it
   (`'unsafe-inline'`, or a nonce or hash).
 

@@ -203,14 +203,15 @@
 }
 
 /*
- * The border colour again, unlayered: apps that reset borders globally outside a layer (`* { border: 0 }`, common next
- * to Ant Design) would otherwise turn every border of the package to the text colour. Zero specificity, so the
- * package's own border-colour utilities still win; an app's Tailwind border-colour classes on the package's elements
- * don't (they're layered).
+ * The border colour again, unlayered and with a class's specificity: an app's global `* { border: 0 }` (common next
+ * to Ant Design) would otherwise turn the package's borders to the text colour when it loads after this stylesheet, as
+ * it often does in a production build. Only elements carrying an `ml:` class, so the app's border-colour classes on
+ * content in the slots still apply. Before the utilities, so every `ml:` colour class still wins; an app's Tailwind
+ * border-colour classes on a component's root don't.
  */
-:where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *),
-:where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *)::before,
-:where([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *)::after {
+:is([class^='ml:'], [class*=' ml:']),
+:is([class^='ml:'], [class*=' ml:'])::before,
+:is([class^='ml:'], [class*=' ml:'])::after {
   border-color: var(--ml-border);
 }
 
@@ -218,8 +219,10 @@
  * Apps' own element resets (e.g. Ant Design's reset.css: `p { margin-bottom: 1em }`, `h1 { font-weight: 500 }`) are
  * usually unlayered, so they beat the layered reset above. The elements they style get the same reset again, unlayered
  * and with a class's specificity (0,1,0): enough to beat element selectors, and still before the utilities, so every
- * `ml:` class wins. The trade-offs: an app's Tailwind margin/padding classes on these elements inside the package
- * (e.g. a <p class="mt-4"> in slot content) lose too, and `ml:space-x/y-*` doesn't space them (zero specificity).
+ * `ml:` class wins. The trade-offs: an app's Tailwind classes for these elements' margins and padding, and for the
+ * font size and weight of headings, lose too inside the package (e.g. a <p class="mt-4"> or <h2 class="text-lg"> in
+ * slot content), and `ml:space-*` doesn't space them. (`space-*` and `divide-*` have zero specificity, so an app's
+ * global reset such as `* { border: 0 }` beats them too: the class check rejects them.)
  */
 :is([class^='ml:'], [class*=' ml:'], [class^='ml:'] *, [class*=' ml:'] *):where(
   p,
