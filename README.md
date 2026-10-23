@@ -141,7 +141,8 @@ app loads `dist/`.
 
 ## Development
 
-Use Node 22 (`nvm use` reads `.nvmrc`): 22.13 or newer, and the latest 22 avoids `EBADENGINE` warnings on install.
+Use Node 22 (`nvm use` reads `.nvmrc`), 22.22.2 or newer: jsdom, which the tests run in, needs it (older releases
+print `EBADENGINE` warnings on install).
 
 ```bash
 npm run dev            # the playground (playground/App.vue)
