@@ -99,6 +99,9 @@ it with the package's keys, listed in [src/locales/en.json](src/locales/en.json)
   don't apply, and a CSS rule of the app's with a single class only applies if it loads after the package: change the
   token instead, or use a more specific selector. In the slots, the app's border-colour classes apply; elements
   without one take the border colour of whichever base layer loads last, the package's or the app's.
+- The app's own `@layer base` rules for bare elements or `*` can reach the package's elements: they share a layer with
+  its reset, and win when they're more specific or load after it. A base `* { outline-color: … }`, as in shadcn-vue
+  apps, recolours the package's focus outlines when the app's CSS loads last.
 - The styles are added to the page in a `<style>` element. With a Content Security Policy, `style-src` must allow it
   (`'unsafe-inline'`, or a nonce or hash).
 
